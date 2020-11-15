@@ -29,3 +29,32 @@ jobs:
         file: ./coverage.xml
         name: codecov-umbrella
         fail_ci_if_error: true
+
+  deploy:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: staging
+        if: github.ref == 'refs/heads/master'
+        uses: appleboy/ssh-action@master
+        with:
+          timeout: 5s
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USERNAME }}
+          key: ${{ secrets.STAGING_PRIVATE_KEY }}
+          script: |
+            cd backend
+            git pull
+            docker-compose -f production.yml up -d --build
+      - name: production
+        uses: appleboy/ssh-action@master
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          timeout: 5s
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_PRIVATE_KEY }}
+          script: |
+            cd backend
+            git pull
+            docker-compose -f production.yml up -d --build
