@@ -20,7 +20,7 @@ django-gitlab-webhooks==1.0.0  # https://github.com/OpenWiden/django-gitlab-webh
 
 # Django REST Framework
 # ------------------------------------------------------------------------------
-djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
+djangorestframework==3.12.2  # https://github.com/encode/django-rest-framework
 django-filter==2.2.0
 djangorestframework-simplejwt==4.4.0
 drf-yasg==1.17.1
