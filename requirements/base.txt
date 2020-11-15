@@ -6,7 +6,7 @@ whitenoise==5.2.0  # https://github.com/evansd/whitenoise
 redis==3.5.3 # https://github.com/andymccurdy/redis-py
 uvicorn==0.12.2  # https://github.com/encode/uvicorn
 authlib==0.15.2
-requests==2.23.0
+requests==2.25.0
 
 # Django
 # ------------------------------------------------------------------------------
