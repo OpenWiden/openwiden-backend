@@ -4,7 +4,7 @@ from openwiden.webhooks import models
 from openwiden.repositories.tests import factories
 
 
-class RepositoryWebhookFactory(factory.DjangoModelFactory):
+class RepositoryWebhookFactory(factory.django.DjangoModelFactory):
     repository = factory.SubFactory(factories.Repository)
     remote_id = factory.Faker("pyint")
     url = factory.Faker("url")

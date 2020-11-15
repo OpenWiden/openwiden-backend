@@ -8,7 +8,7 @@ from openwiden.organizations import models
 from openwiden.users.tests import factories as user_factories
 
 
-class Organization(factory.DjangoModelFactory):
+class Organization(factory.django.DjangoModelFactory):
     vcs = fuzzy.FuzzyChoice(enums.VersionControlService.values)
     remote_id = factory.Faker("pyint")
     name = factory.Faker("company")
@@ -24,7 +24,7 @@ class Organization(factory.DjangoModelFactory):
         django_get_or_create = ("vcs", "remote_id")
 
 
-class Member(factory.DjangoModelFactory):
+class Member(factory.django.DjangoModelFactory):
     organization = factory.SubFactory(Organization)
     vcs_account = factory.SubFactory(user_factories.VCSAccountFactory)
     is_admin = factory.Faker("pybool")
