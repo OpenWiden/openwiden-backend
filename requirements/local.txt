@@ -21,7 +21,7 @@ selenium==3.141.0  # https://github.com/SeleniumHQ/selenium/
 
 # Code quality
 # ------------------------------------------------------------------------------
-flake8==3.7.9  # https://github.com/PyCQA/flake8
+flake8==3.8.4  # https://github.com/PyCQA/flake8
 flake8-isort==3.0.1  # https://github.com/gforcada/flake8-isort
 black==19.10b0  # https://github.com/ambv/black
 pylint-django==2.0.15  # https://github.com/PyCQA/pylint-django
