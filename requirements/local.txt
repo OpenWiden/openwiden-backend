@@ -14,7 +14,7 @@ django-stubs==1.7.0  # https://github.com/typeddjango/django-stubs
 pytest==6.1.2  # https://github.com/pytest-dev/pytest
 pytest-sugar==0.9.4  # https://github.com/Frozenball/pytest-sugar
 pytest-cov==2.10.1  # https://github.com/pytest-dev/pytest-cov
-pytest-cases==2.2.1  # https://github.com/smarie/python-pytest-cases/
+pytest-cases==2.3.0  # https://github.com/smarie/python-pytest-cases/
 pytest-asyncio==0.14.0  # https://github.com/pytest-dev/pytest-asyncio
 faker==4.1.0  # https://github.com/joke2k/faker
 selenium==3.141.0  # https://github.com/SeleniumHQ/selenium/
