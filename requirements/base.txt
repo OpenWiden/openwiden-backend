@@ -8,6 +8,7 @@ uvicorn==0.12.2  # https://github.com/encode/uvicorn
 authlib==0.15.2
 requests==2.25.0
 websockets==8.1  # https://github.com/aaugustin/websockets
+pydantic==1.7.2  # https://github.com/samuelcolvin/pydantic
 
 # Django
 # ------------------------------------------------------------------------------
