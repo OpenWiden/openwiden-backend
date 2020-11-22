@@ -1,28 +1,30 @@
-pytz==2020.1  # https://github.com/stub42/pytz
+pytz==2020.4  # https://github.com/stub42/pytz
 python-slugify==4.0.1  # https://github.com/un33k/python-slugify
-Pillow==7.1.2  # https://github.com/python-pillow/Pillow
-argon2-cffi==19.2.0  # https://github.com/hynek/argon2_cffi
-whitenoise==5.0.1  # https://github.com/evansd/whitenoise
-redis==3.5.0 # https://github.com/andymccurdy/redis-py
-uvicorn==0.11.5  # https://github.com/encode/uvicorn
-authlib==0.14.1
-requests==2.23.0
+Pillow==8.0.1  # https://github.com/python-pillow/Pillow
+argon2-cffi==20.1.0  # https://github.com/hynek/argon2_cffi
+whitenoise==5.2.0  # https://github.com/evansd/whitenoise
+redis==3.5.3 # https://github.com/andymccurdy/redis-py
+uvicorn==0.12.2  # https://github.com/encode/uvicorn
+authlib==0.15.2
+requests==2.25.0
+websockets==8.1  # https://github.com/aaugustin/websockets
 
 # Django
 # ------------------------------------------------------------------------------
-django==3.0.7  # pyup: < 3.1  # https://www.djangoproject.com/
+django==3.0.11  # pyup: < 3.1  # https://www.djangoproject.com/
 django-environ==0.4.5  # https://github.com/joke2k/django-environ
 django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
-django-redis==4.11.0  # https://github.com/jazzband/django-redis
-django-q==1.2.1  # https://github.com/Koed00/django-q
+django-redis==4.12.1  # https://github.com/jazzband/django-redis
+django-q==1.3.4  # https://github.com/Koed00/django-q
 django-github-webhooks==1.1.0  # https://github.com/OpenWiden/django-github-webhooks
 django-gitlab-webhooks==1.0.0  # https://github.com/OpenWiden/django-gitlab-webhooks
+asgiref==3.3.1  # https://github.com/django/asgiref
 
 # Django REST Framework
 # ------------------------------------------------------------------------------
-djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
-django-filter==2.2.0
-djangorestframework-simplejwt==4.4.0
-drf-yasg==1.17.1
-django-cors-headers==3.2.1
-drf-nested-routers==0.91
+djangorestframework==3.12.2  # https://github.com/encode/django-rest-framework
+django-filter==2.4.0
+djangorestframework-simplejwt==4.6.0
+drf-yasg==1.20.0
+django-cors-headers==3.5.0
+drf-nested-routers==0.92.1

@@ -16,7 +16,7 @@ class UserFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ("username",)
 
 
-class VCSAccountFactory(factory.DjangoModelFactory):
+class VCSAccountFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     vcs = fuzzy.FuzzyChoice(enums.VersionControlService.values)
     remote_id = fuzzy.FuzzyInteger(1)
