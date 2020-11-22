@@ -11,7 +11,7 @@ OpenWiden - An Open Source Project Search Platform.
     :target: https://github.com/ambv/black
     :alt: Black code style
 
-.. image:: https://github.com/OpenWiden/openwiden-backend/workflows/Tests/badge.svg
+.. image:: https://github.com/OpenWiden/openwiden-backend/workflows/CI/badge.svg
     :target: https://github.com/OpenWiden/openwiden-backend/actions
     :alt: Tests
 
