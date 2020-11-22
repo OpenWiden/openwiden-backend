@@ -1,5 +1,6 @@
+from enum import Enum
 from logging import getLogger
-from typing import Union
+from typing import Optional, Union
 from uuid import uuid4
 
 import requests
@@ -9,14 +10,40 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.files.base import ContentFile
 from django_q.tasks import async_task
 from django_redis import get_redis_connection
+from pydantic import BaseModel, Field
 from rest_framework.request import Request
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from openwiden.repositories import services as repositories_services
+from openwiden.exceptions import ServiceException
 
 from . import models, serializers, exceptions
 
 log = getLogger(__name__)
+
+
+class WebsocketMessageObjectType(str, Enum):
+    REPOSITORY = "repository"
+
+
+class WebsocketMessageObject(BaseModel):
+    id_: str = Field(alias="id")
+    type_: WebsocketMessageObjectType = Field(alias="type")
+
+
+class WebsocketMessage(BaseModel):
+    message: str
+    object_: Optional[WebsocketMessageObject] = Field(alias="object")
+
+
+def repository_message_factory(*, message: str, repository_id: str) -> WebsocketMessage:
+    return WebsocketMessage(
+        message=message,
+        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY,),
+    )
+
+
+RepositoryMessage = repository_message_factory
 
 
 class Token:
@@ -230,11 +257,15 @@ def create_vcs_account(
         raise exceptions.InvalidVCSAccount(serializer_errors=serializer.errors)
 
 
-def send_notification(*, user: models.User, message: str) -> None:
-    if not isinstance(message, str):
+def send_notification(*, user: models.User, message: Union[WebsocketMessage, ServiceException]) -> None:
+    if isinstance(message, WebsocketMessage):
+        message = str(message.dict(by_alias=True))
+    elif isinstance(message, ServiceException):
+        message = message.json_dumped_detail
+    else:
         raise ValueError(
             f"send_notification received message '{message}' of type {type(message)} "
-            f"instead of expected string type"
+            f"instead of expected type {WebsocketMessage} or {ServiceException}"
         )
 
     log.info(f"[Service] sending notification for user {user} with a message '{message}'")
