@@ -46,6 +46,7 @@ jobs:
             cd backend
             git pull
             docker-compose -f production.yml up -d --build
+            docker-compose -f production.yml run --rm django python manage.py migrate
       - name: production
         uses: appleboy/ssh-action@master
         if: startsWith(github.ref, 'refs/tags/v')
@@ -58,3 +59,4 @@ jobs:
             cd backend
             git pull
             docker-compose -f production.yml up -d --build
+            docker-compose -f production.yml run --rm django python manage.py migrate
