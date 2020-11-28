@@ -8,7 +8,7 @@ uvicorn==0.12.2  # https://github.com/encode/uvicorn
 websockets==8.1  # https://github.com/aaugustin/websockets
 httptools==0.1.1  # https://github.com/MagicStack/httptools
 uvloop==0.14.0  # https://github.com/MagicStack/uvloop
-authlib==0.15.2
+authlib==0.14.1
 requests==2.25.0
 pydantic==1.7.2  # https://github.com/samuelcolvin/pydantic
 
