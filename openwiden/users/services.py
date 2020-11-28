@@ -1,3 +1,4 @@
+import json
 from enum import Enum
 from logging import getLogger
 from typing import Optional, Union
@@ -39,7 +40,7 @@ class WebsocketMessage(BaseModel):
 def repository_message_factory(*, message: str, repository_id: str) -> WebsocketMessage:
     return WebsocketMessage(
         message=message,
-        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY.value,),
+        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY,),
     )
 
 
@@ -259,7 +260,7 @@ def create_vcs_account(
 
 def send_notification(*, user: models.User, message: Union[WebsocketMessage, ServiceException]) -> None:
     if isinstance(message, WebsocketMessage):
-        message = str(message.dict(by_alias=True))
+        message = json.dumps(message.dict(by_alias=True))
     elif isinstance(message, ServiceException):
         message = message.json_dumped_detail
     else:
