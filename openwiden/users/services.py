@@ -39,7 +39,7 @@ class WebsocketMessage(BaseModel):
 def repository_message_factory(*, message: str, repository_id: str) -> WebsocketMessage:
     return WebsocketMessage(
         message=message,
-        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY,),
+        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY.value,),
     )
 
 
