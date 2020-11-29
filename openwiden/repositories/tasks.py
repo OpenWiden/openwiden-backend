@@ -13,7 +13,9 @@ def add_repository(repository: models.Repository, user: users_models.User):
         users_services.send_notification(user=user, message=e)
     else:
         message = users_services.RepositoryMessage(
-            message=messages.REPOSITORY_IS_ADDED.format(name=repository.name), repository_id=str(repository.id),
+            message=messages.REPOSITORY_IS_ADDED.format(name=repository.name),
+            repository_id=str(repository.id),
+            state=enums.RepositoryState.ADDED,
         )
         users_services.send_notification(user=user, message=message)
 
@@ -28,6 +30,8 @@ def remove_repository(repository: models.Repository, user: users_models.User):
         users_services.send_notification(user=user, message=e)
     else:
         message = users_services.RepositoryMessage(
-            message=messages.REPOSITORY_IS_REMOVED.format(name=repository.name), repository_id=str(repository.id),
+            message=messages.REPOSITORY_IS_REMOVED.format(name=repository.name),
+            repository_id=str(repository.id),
+            state=enums.RepositoryState.REMOVED,
         )
         users_services.send_notification(user=user, message=message)

@@ -15,7 +15,10 @@ from pydantic import BaseModel, Field
 from rest_framework.request import Request
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from openwiden.repositories import services as repositories_services
+from openwiden.repositories import (
+    services as repositories_services,
+    enums as repository_enums,
+)
 from openwiden.exceptions import ServiceException
 
 from . import models, serializers, exceptions
@@ -32,15 +35,21 @@ class WebsocketMessageObject(BaseModel):
     type_: WebsocketMessageObjectType = Field(alias="type")
 
 
+class RepositoryMessageObject(WebsocketMessageObject):
+    state: repository_enums.RepositoryState
+
+
 class WebsocketMessage(BaseModel):
     message: str
     object_: Optional[WebsocketMessageObject] = Field(alias="object")
 
 
-def repository_message_factory(*, message: str, repository_id: str) -> WebsocketMessage:
+def repository_message_factory(
+    *, message: str, repository_id: str, state: repository_enums.RepositoryState,
+) -> WebsocketMessage:
     return WebsocketMessage(
         message=message,
-        object=WebsocketMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY,),
+        object=RepositoryMessageObject(id=str(repository_id), type=WebsocketMessageObjectType.REPOSITORY, state=state,),
     )
 
 
