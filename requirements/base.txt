@@ -4,7 +4,7 @@ Pillow==8.0.1  # https://github.com/python-pillow/Pillow
 argon2-cffi==20.1.0  # https://github.com/hynek/argon2_cffi
 whitenoise==5.2.0  # https://github.com/evansd/whitenoise
 redis==3.5.3 # https://github.com/andymccurdy/redis-py
-uvicorn==0.12.2  # https://github.com/encode/uvicorn
+uvicorn==0.13.0  # https://github.com/encode/uvicorn
 websockets==8.1  # https://github.com/aaugustin/websockets
 httptools==0.1.1  # https://github.com/MagicStack/httptools
 uvloop==0.14.0  # https://github.com/MagicStack/uvloop
