@@ -2,7 +2,9 @@ from authlib.integrations.django_client import DjangoRemoteApp
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import no_body, swagger_auto_schema
 
-from rest_framework import views, permissions as drf_permissions, viewsets, mixins, status
+from rest_framework import views, viewsets, mixins, status
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -37,7 +39,8 @@ class OAuthLoginView(views.APIView):
     ### http://0.0.0.0:8000/users/login/gitlab/?redirect_uri=http://0.0.0.0:8000/users/complete/gitlab/
     """
 
-    permission_classes = (drf_permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
+    permission_classes = (AllowAny,)
 
     def get(self, request, vcs):
         client: DjangoRemoteApp = services.get_client(vcs=vcs)
@@ -62,7 +65,8 @@ class OAuthCompleteView(views.APIView):
     Should retrieve default GET params from VCS site redirect.
     """
 
-    permission_classes = (drf_permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
+    permission_classes = (AllowAny,)
 
     def get(self, request, vcs: str):
         user = services.oauth(vcs=vcs, user=self.request.user, request=request)
